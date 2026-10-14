@@ -1,3 +1,5 @@
+> **Handover guide:** see `docs/handover/Kiwanis Website Guide.pdf` for the complete, up-to-date manual.
+
 # Kiwanis Limited Editor Portal
 
 The site now includes a small editor portal at:
@@ -17,28 +19,9 @@ The public pages read from `src/_data/editorContent.json`, so edits in the porta
 
 Editors can visit `/editor/` directly.
 
-For the board demo, `/editor/?demo=1` opens in test mode. Test mode lets someone type any email address, enter a fake numeric OTP such as `123456`, and preview the editor interface without publishing changes.
+When the site runs locally (`npm run dev`), `/editor/?demo=1` opens in test mode (localhost only). Test mode lets someone type any email address, enter a fake numeric OTP such as `123456`, and preview the editor interface without publishing changes.
 
-To demonstrate a real publish, use:
-
-`/editor/?live=1`
-
-That mode uses the Cloudflare editor API, GitHub commits, and Cloudflare Pages rebuilds. For the current demo setup, use:
-
-`demo@winvakiw.org`
-
-Because `EDITOR_DEV_MODE=true` is temporarily enabled, the one-time code is shown on screen after requesting it. After the demo period, turn `EDITOR_DEV_MODE` off and replace `demo@winvakiw.org` with real approved editor email addresses.
-
-Security comes from email OTP login, allowed email checks, and server-side GitHub commits. When production editor access is ready on the real domain, leave the editor at `/editor/` and configure the required Cloudflare secrets below.
-
-Temporary live-publish board demo credential:
-
-```text
-Email: demo@winvakiw.org
-OTP: 123456
-```
-
-This opens both the Admin Portal and Editor Portal with real publish access for the demo. Remove or disable it after the demo window.
+The board-demo live login (`demo@winvakiw.org`) was removed on October 13, 2026. Real logins use approved emails and emailed one-time codes.
 
 ## Required Cloudflare Environment Variables
 
@@ -48,7 +31,7 @@ Set these for the Cloudflare Pages project:
 EDITOR_AUTH_SECRET=<long random secret>
 EDITOR_ALLOWED_EMAILS=person1@example.com,person2@example.com
 GITHUB_TOKEN=<fine-grained GitHub token with contents read/write for this repo>
-GITHUB_OWNER=darkdefined-spec
+GITHUB_OWNER=Winchester-Kiwanis
 GITHUB_REPO=kiwanis-winchester
 GITHUB_BRANCH=main
 RESEND_API_KEY=<email sending API key>

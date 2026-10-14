@@ -1,0 +1,350 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kiwanis Club of Winchester — Website Guide</title>
+<style>
+:root{--blue:#003DA5;--gold:#FFD100;--navy:#001A5C;--ink:#0D1B3E;--body:#374151;--muted:#6B7280;--line:#E5EAF4;--tint:#EBF1FC;--warn:#9a3412;--warnbg:#fff7ed;--ok:#166534;--okbg:#f0fdf4}
+*{box-sizing:border-box}
+body{margin:0;font:16px/1.65 "Segoe UI",Inter,system-ui,sans-serif;color:var(--body);background:#f8faff}
+header.cover{background:var(--navy);color:#fff;padding:56px 7vw 48px;border-bottom:8px solid var(--gold)}
+header.cover .k{font:700 13px/1 inherit;letter-spacing:.2em;text-transform:uppercase;color:var(--gold)}
+header.cover h1{margin:14px 0 10px;font-size:clamp(2rem,4vw,3rem);line-height:1.1;color:#fff}
+header.cover p{margin:0;max-width:760px;color:#dbe4ff}
+main{max-width:980px;margin:0 auto;padding:32px 6vw 80px}
+nav.toc{background:#fff;border:1px solid var(--line);border-radius:14px;padding:22px 28px;margin:-56px 0 36px;box-shadow:0 10px 30px #001a5c14;position:relative}
+nav.toc h2{margin:0 0 10px;font-size:1rem;letter-spacing:.12em;text-transform:uppercase;color:var(--blue)}
+nav.toc ol{margin:0;padding-left:22px;columns:2;column-gap:36px}
+nav.toc li{margin:3px 0;break-inside:avoid}
+a{color:var(--blue)}
+section{background:#fff;border:1px solid var(--line);border-radius:14px;padding:30px 34px;margin:0 0 28px;page-break-before:always}
+section:first-of-type{page-break-before:auto}
+h2{color:var(--ink);font-size:1.7rem;line-height:1.2;margin:0 0 6px}
+h2 .n{display:inline-block;min-width:44px;color:var(--blue)}
+h3{color:var(--navy);margin:28px 0 8px;font-size:1.15rem}
+p.lead{font-size:1.06rem;color:var(--muted);margin-top:0}
+.box{border-radius:10px;padding:14px 18px;margin:16px 0;border:1px solid}
+.box.tip{background:var(--tint);border-color:#c9d8f5}
+.box.warn{background:var(--warnbg);border-color:#fed7aa;color:#7c2d12}
+.box.ok{background:var(--okbg);border-color:#bbf7d0;color:#14532d}
+.box b:first-child{display:block;margin-bottom:4px}
+ol.steps{counter-reset:s;list-style:none;padding:0;margin:14px 0}
+ol.steps>li{counter-increment:s;position:relative;padding:4px 0 10px 46px}
+ol.steps>li::before{content:counter(s);position:absolute;left:0;top:2px;width:30px;height:30px;border-radius:50%;background:var(--blue);color:#fff;font-weight:700;display:grid;place-items:center;font-size:.9rem}
+figure{margin:18px 0 24px}
+figure img{width:100%;border:1px solid var(--line);border-radius:10px;box-shadow:0 8px 24px #001a5c12}
+figcaption{font-size:.88rem;color:var(--muted);margin-top:6px}
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:.95rem}
+th,td{text-align:left;vertical-align:top;padding:9px 12px;border-bottom:1px solid var(--line)}
+th{background:var(--tint);color:var(--navy);font-weight:700}
+code,kbd{font-family:Consolas,"Cascadia Mono",monospace;font-size:.88em;background:#f1f4fa;border:1px solid var(--line);border-radius:5px;padding:1px 6px;color:var(--navy)}
+.pill{display:inline-block;font-size:.78rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;border-radius:999px;padding:2px 10px;margin-right:6px}
+.pill.done{background:var(--okbg);color:var(--ok)}.pill.todo{background:var(--warnbg);color:var(--warn)}.pill.info{background:var(--tint);color:var(--blue)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.card{border:1px solid var(--line);border-radius:12px;padding:16px 18px;background:#fbfcff}
+.card h4{margin:0 0 6px;color:var(--navy)}
+footer{text-align:center;color:var(--muted);font-size:.85rem;padding:20px}
+@media (max-width:760px){nav.toc ol{columns:1}.grid2{grid-template-columns:1fr}section{padding:22px}}
+@media print{body{background:#fff}section{border:0;box-shadow:none;padding:0 0 10px}nav.toc{box-shadow:none;margin-top:20px}header.cover{-webkit-print-color-adjust:exact;print-color-adjust:exact}a{color:var(--blue);text-decoration:none}}
+</style>
+</head>
+<body>
+<header class="cover">
+  <div class="k">Kiwanis Club of Winchester · Website Handover</div>
+  <h1>Your Website: How It Works, How to Edit It, and How to Undo Mistakes</h1>
+  <p>Everything the club needs to run its website: where it lives, who owns what, step-by-step editing tutorials, how to restore an earlier version, and what's left before the new site replaces winvakiw.org. Prepared October 2026.</p>
+</header>
+<main>
+<nav class="toc">
+  <h2>Contents</h2>
+  <ol>
+    <li><a href="#start">Start here: the 2-minute overview</a></li>
+    <li><a href="#status">Where things stand (status report)</a></li>
+    <li><a href="#login">Logging in to the portals</a></li>
+    <li><a href="#editor">Tutorial: the Editor Portal (events, newsletters, speakers)</a></li>
+    <li><a href="#admin">Tutorial: the Admin Portal (page text, images, settings)</a></li>
+    <li><a href="#undo">Undo &amp; restore: fixing a mistake</a></li>
+    <li><a href="#access">Managing who can edit</a></li>
+    <li><a href="#golive">Go-live checklist</a></li>
+    <li><a href="#accounts">Accounts &amp; ownership</a></li>
+    <li><a href="#tech">Technical reference (for a future web volunteer)</a></li>
+    <li><a href="#faq">FAQ &amp; glossary</a></li>
+  </ol>
+</nav>
+
+<!-- 1 -->
+<section id="start">
+  <h2><span class="n">1</span>Start here</h2>
+  <p class="lead">The new website is a fast, modern site. Club members edit it through two simple web pages, called portals. They never touch code.</p>
+  <figure><img src="img/site-home.jpg" alt="The new Kiwanis website home page"><figcaption>The new home page.</figcaption></figure>
+  <div class="grid2">
+    <div class="card"><h4>The website</h4>Preview address today: <b>kiwanis-winchester.pages.dev</b><br>Final address after go-live: <b>winvakiw.org</b> (still the old WordPress site today; see <a href="#golive">Go-live</a>).</div>
+    <div class="card"><h4>Editor Portal</h4><b>/editor/</b> — for routine updates: event photo cards, newsletter PDFs, and meeting speakers. Safe for any approved volunteer.</div>
+    <div class="card"><h4>Admin Portal</h4><b>/admin/</b> — for trusted administrators: page headlines and text, images, meeting details, contact info, and site settings.</div>
+    <div class="card"><h4>Nothing is ever lost</h4>Every save is recorded as a new version in the club's GitHub account. Any earlier version can be restored with one click (see <a href="#undo">Undo &amp; restore</a>).</div>
+  </div>
+  <h3>How a change reaches the website</h3>
+  <ol class="steps">
+    <li>An approved person logs in to a portal with their email (a 6-digit code is emailed to them; no passwords).</li>
+    <li>They make the change and click <b>Save &amp; Publish</b> (Editor) or <b>Publish Draft</b> (Admin).</li>
+    <li>The change is saved as a new version in the club's GitHub account (the "filing cabinet").</li>
+    <li>Cloudflare (the "web host") sees the new version and rebuilds the site. The change is live in about 1–2 minutes.</li>
+  </ol>
+  <div class="box warn"><b>Important right now</b>Step 4 is currently disconnected (see <a href="#status">Status</a>, item A). Until it's reconnected, saved changes are stored safely but won't appear on the website by themselves.</div>
+</section>
+
+<!-- 2 -->
+<section id="status">
+  <h2><span class="n">2</span>Where things stand</h2>
+  <p class="lead">Status as of October 13, 2026.</p>
+  <h3>Done</h3>
+  <table>
+    <tr><th style="width:34%">Item</th><th>Detail</th></tr>
+    <tr><td><span class="pill done">Done</span>New website built</td><td>Every page of the old WordPress site rebuilt with no content lost: Home, About (with club history), What We Do, Youth Programs, Pancake Day, Events &amp; Newsletters, Resources, Join, Donate, and Contact.</td></tr>
+    <tr><td><span class="pill done">Done</span>Editing portals</td><td>Editor Portal and Admin Portal with email-code login, live preview, staged drafts, and one-click restore.</td></tr>
+    <tr><td><span class="pill done">Done</span>"Ask Kiwanis" assistant</td><td>An AI helper on the site that answers visitor questions about meetings, programs and joining.</td></tr>
+    <tr><td><span class="pill done">Done</span>Club GitHub account</td><td>The site's files now live in the club's own GitHub organization, <b>Winchester-Kiwanis</b> (billing contact: winchesterkiwanis@outlook.com).</td></tr>
+    <tr><td><span class="pill done">Done</span>Security clean-up (Oct 13)</td><td>Removed the temporary "board demo" login that let anyone publish changes. Turned off demo mode on the live site. Verified the old demo login is rejected.</td></tr>
+  </table>
+  <h3>Still to do</h3>
+  <table>
+    <tr><th style="width:34%">Item</th><th>What it means / who</th></tr>
+    <tr><td><span class="pill todo">A</span>Reconnect GitHub → Cloudflare</td><td>When the files moved to the club's GitHub, Cloudflare stopped rebuilding automatically. A one-time approval in GitHub fixes it (steps in <a href="#golive">Go-live</a>, step 1). <i>Cameron, ~10 minutes.</i></td></tr>
+    <tr><td><span class="pill todo">B</span>Turn on login emails</td><td>Portal logins email a 6-digit code. That needs a free email-sending service (Resend) set up for winvakiw.org. Until then, <b>nobody can log in to the live portals</b>. <i>Needs access to the winvakiw.org domain settings.</i></td></tr>
+    <tr><td><span class="pill todo">C</span>List the approved editors &amp; admins</td><td>The club decides who may edit. Their emails go into two lists in Cloudflare (<a href="#access">Managing who can edit</a>).</td></tr>
+    <tr><td><span class="pill todo">D</span>Point winvakiw.org at the new site</td><td>The domain still shows the old WordPress site. Switching it is a DNS change at the domain registrar (<a href="#golive">Go-live</a>, step 4).</td></tr>
+    <tr><td><span class="pill todo">E</span>Move accounts fully into the club's name</td><td>Hosting (Cloudflare) and the publishing key currently sit under Cameron's personal accounts. Club officers should be added as owners so the club never depends on one person (<a href="#accounts">Accounts &amp; ownership</a>).</td></tr>
+  </table>
+  <div class="box tip"><b>For the board meeting</b>The live portals can't be demonstrated until B is done. To show the portals anyway, run the site on a laptop in "rehearsal mode" (sample data, nothing is published). See <a href="#tech">Technical reference → Rehearsal mode</a>.</div>
+</section>
+
+<!-- 3 -->
+<section id="login">
+  <h2><span class="n">3</span>Logging in</h2>
+  <p class="lead">There are no passwords. You prove who you are with a code sent to your email.</p>
+  <ol class="steps">
+    <li>Go to <b>[website]/editor/</b> (routine updates) or <b>[website]/admin/</b> (full site). Bookmark it; it isn't linked from the public menu on purpose.</li>
+    <li>Type your email address and click <b>Send Code</b>. Only approved emails receive a code. Anyone else sees the same message but gets nothing.</li>
+    <li>Check your inbox for "Your Kiwanis editor code". Type the 6 digits and click <b>Log In</b>. Codes expire after 10 minutes; just request a new one if needed.</li>
+    <li>You stay logged in for about 8 hours on that browser. Click <b>Log Out</b> on shared computers.</li>
+  </ol>
+  <figure><img src="img/editor-2-code.jpg" alt="Editor Portal login: email then one-time code"><figcaption>Email first, then the one-time code.</figcaption></figure>
+  <div class="box tip"><b>Admins can use both portals</b>Admins can open both <code>/admin/</code> and <code>/editor/</code>. Editors can only open <code>/editor/</code>.</div>
+</section>
+
+<!-- 4 -->
+<section id="editor">
+  <h2><span class="n">4</span>Tutorial: the Editor Portal</h2>
+  <p class="lead">For the everyday updates: event cards with photos, newsletter PDFs, and Wednesday meeting speakers. It can't break the rest of the site.</p>
+  <figure><img src="img/editor-3-events.jpg" alt="Editor Portal events tab"><figcaption>The Editor Portal. Tabs on the left: Events, Newsletters, Speakers, Save History.</figcaption></figure>
+
+  <h3>Add or update an event card</h3>
+  <ol class="steps">
+    <li>Open the <b>Events</b> tab and click <b>Add Event</b> (top right). A new card appears.</li>
+    <li>Fill in <b>Title</b>, <b>Date</b>, <b>Category</b> (e.g. "Community Event"), and the <b>Details line</b> (date, place, city).</li>
+    <li>Optional: pick a <b>Header color</b> and paste the event's <b>Facebook URL</b>.</li>
+    <li>Photos: click <b>Choose File</b>, pick a photo (JPG, PNG, WEBP or GIF), then <b>Upload Image</b>. Type a short caption describing the photo; this is also read aloud to blind visitors. Use the crop dropdown (e.g. "top center") if a face is cut off.</li>
+    <li>Use <b>Up</b>/<b>Down</b> to reorder cards and <b>Remove</b> to delete one.</li>
+    <li>Click <b>Save &amp; Publish</b> at the bottom when finished.</li>
+  </ol>
+  <h3>Post a newsletter (The Kourier)</h3>
+  <figure><img src="img/editor-4-newsletters.jpg" alt="Newsletters tab"><figcaption>Newsletters tab.</figcaption></figure>
+  <ol class="steps">
+    <li>Open <b>Newsletters</b> and click <b>Add Newsletter</b>.</li>
+    <li>Enter the title (e.g. "October 2026 Kourier"), the date, and the year.</li>
+    <li>Upload the <b>PDF</b> (PDFs only here), then <b>Save &amp; Publish</b>.</li>
+  </ol>
+  <h3>Update meeting speakers</h3>
+  <figure><img src="img/editor-5-speakers.jpg" alt="Speakers tab"><figcaption>Speakers tab: upcoming speakers and recent/past guests.</figcaption></figure>
+  <ol class="steps">
+    <li>Open <b>Speakers</b>. Edit the short introduction paragraph if needed.</li>
+    <li>Under <b>Upcoming Speakers</b> click <b>Add</b> and enter date, name, organization and topic.</li>
+    <li>After a speaker has presented, move them to <b>Recent &amp; Past Guests</b>: add them there and remove them from Upcoming.</li>
+    <li>Click <b>Save &amp; Publish</b>.</li>
+  </ol>
+  <figure><img src="img/editor-8-save-bar.jpg" alt="Save and Publish bar"><figcaption>The save bar shows "unsaved changes" until you publish.</figcaption></figure>
+  <div class="box tip"><b>Good habits</b>Make one batch of related changes, publish, then check the public page after a couple of minutes. The <b>View Events Page</b> and <b>View Speakers</b> links at the top open it for you.</div>
+</section>
+
+<!-- 5 -->
+<section id="admin">
+  <h2><span class="n">5</span>Tutorial: the Admin Portal</h2>
+  <p class="lead">For administrators: change any page's headlines, paragraphs and images by clicking them in a live preview.</p>
+  <figure><img src="img/admin-3-workspace.jpg" alt="Admin Portal workspace"><figcaption>Left: pages and settings. Centre: live preview. Right: the inspector for the selected item.</figcaption></figure>
+  <h3>Edit text or an image by clicking it</h3>
+  <ol class="steps">
+    <li>Pick a page on the left, e.g. <b>Home Page</b>.</li>
+    <li>In the <b>Live Preview</b>, editable text and images are outlined. Click the one you want to change.</li>
+    <li>The <b>Selected Item</b> box on the right shows its current value. Edit the text, or use <b>Upload Image</b> to replace a picture.</li>
+    <li>Click <b>Stage Change</b>. That puts the edit into your <b>draft</b>, which isn't live yet. Repeat on as many pages as you like.</li>
+    <li>When everything looks right, click <b>Publish Draft</b> (top right). All staged edits go live together.</li>
+  </ol>
+  <figure><img src="img/admin-5-inspector.jpg" alt="Inspector and staging"><figcaption>Stage changes one at a time, then publish them all at once.</figcaption></figure>
+  <h3>Edit things that are hard to click</h3>
+  <p>Below the preview, open <b>Structured fields for this page</b>. It lists every field for that page (headings, buttons, lists) as a simple form. Edit, then <b>Stage Page</b>, then <b>Publish Draft</b>.</p>
+  <h3>What each item on the left controls</h3>
+  <table>
+    <tr><th>Item</th><th>Controls</th></tr>
+    <tr><td>Site Settings</td><td>Meeting day/time/place, contact email, social links, footer details used across every page</td></tr>
+    <tr><td>Home … Contact Page</td><td>The headlines, text and images of that page</td></tr>
+    <tr><td>Events Page Copy</td><td>The introduction text on the Events page (the event cards themselves are in the Editor Portal)</td></tr>
+    <tr><td>Events, Newsletters &amp; Speakers</td><td>The same content as the Editor Portal, for admins</td></tr>
+    <tr><td>Visual Page Edits</td><td>Text and images captured from the rendered pages, so nearly anything visible can be edited</td></tr>
+  </table>
+  <div class="box warn"><b>The "Ask Kiwanis" assistant is separate</b>Its knowledge (meeting place, programs, mailing address) is written into the site's code, not into the portals. If meeting details change, a web volunteer must update <code>src/functions/api/kiwanis-assistant.js</code> too (see <a href="#tech">Technical reference</a>).</div>
+</section>
+
+<!-- 6 -->
+<section id="undo">
+  <h2><span class="n">6</span>Undo &amp; restore: fixing a mistake</h2>
+  <p class="lead">Nothing anyone does in the portals can be permanent. Every publish is saved as a version, so you can go back. Use the simplest option that works.</p>
+  <h3>Option 1 — Restore inside the portal (easiest)</h3>
+  <figure><img src="img/editor-6-history.jpg" alt="Save History tab"><figcaption>Editor Portal → Save History. In the Admin Portal, each page has "Recent saves for this file".</figcaption></figure>
+  <ol class="steps">
+    <li><b>Editor Portal:</b> open <b>Save History</b> and click <b>Refresh</b>. <b>Admin Portal:</b> select the page, then scroll to <b>Recent saves for this file</b>.</li>
+    <li>Find the last save that was correct (each one shows who saved it and when).</li>
+    <li>Click <b>Restore</b> on it. The portal saves a <i>new</i> version that matches the old one, so even the restore can be undone.</li>
+    <li>Wait 1–2 minutes and check the public page.</li>
+  </ol>
+  <h3>Option 2 — Roll the whole website back (Cloudflare)</h3>
+  <p>Use this if the site looks broken and you aren't sure what changed.</p>
+  <ol class="steps">
+    <li>Sign in at <b>dash.cloudflare.com</b> → <b>Workers &amp; Pages</b> → <b>kiwanis-winchester</b> → <b>Deployments</b>.</li>
+    <li>Find the last deployment from a time the site looked right.</li>
+    <li>Open its <b>⋯</b> menu → <b>Rollback to this deployment</b>, then confirm. The whole site switches back within seconds.</li>
+  </ol>
+  <div class="box tip"><b>Rollback is temporary</b>The next publish rebuilds the site from the latest saved files. After a rollback, also use Option 1 or 3 to fix the content itself.</div>
+  <h3>Option 3 — Undo a specific change in GitHub (for a web volunteer)</h3>
+  <ol class="steps">
+    <li>Open <b>github.com/Winchester-Kiwanis/kiwanis-winchester</b> → <b>Commits</b>. Each portal save appears as e.g. "Editor update: events, newsletters, and speakers (name@email)".</li>
+    <li>In GitHub Desktop (free app): <b>History</b> → right-click the bad commit → <b>Revert changes in commit</b> → <b>Push origin</b>.</li>
+    <li>Cloudflare rebuilds the site from the reverted version.</li>
+  </ol>
+</section>
+
+<!-- 7 -->
+<section id="access">
+  <h2><span class="n">7</span>Managing who can edit</h2>
+  <p class="lead">Access is controlled by two email lists stored in Cloudflare. Only people on a list can receive a login code.</p>
+  <table>
+    <tr><th>List (Cloudflare setting)</th><th>Who</th><th>Can open</th></tr>
+    <tr><td><code>EDITOR_ALLOWED_EMAILS</code></td><td>Volunteers who post events, newsletters, speakers</td><td>/editor/</td></tr>
+    <tr><td><code>ADMIN_ALLOWED_EMAILS</code></td><td>2–3 trusted administrators</td><td>/admin/ and /editor/</td></tr>
+  </table>
+  <h3>Add or remove a person</h3>
+  <ol class="steps">
+    <li>Sign in at <b>dash.cloudflare.com</b> → <b>Workers &amp; Pages</b> → <b>kiwanis-winchester</b> → <b>Settings</b> → <b>Variables and Secrets</b> (Production).</li>
+    <li>Edit the right list. Emails are separated by commas with no spaces, e.g. <code>president@winvakiw.org,secretary@winvakiw.org</code>.</li>
+    <li>Save, then go to <b>Deployments</b> and choose <b>Retry deployment</b> on the newest one so the change takes effect.</li>
+  </ol>
+  <div class="box warn"><b>Clean-up item</b>The editor list still contains the old <code>demo@winvakiw.org</code> address from the board demo. Remove it when the real emails are entered. It can no longer log in, but it shouldn't be on the list.</div>
+  <div class="box tip"><b>Use role addresses where possible</b>Addresses like <code>secretary@winvakiw.org</code> survive officer changes. When someone leaves their role, remove their personal email the same day.</div>
+</section>
+
+<!-- 8 -->
+<section id="golive">
+  <h2><span class="n">8</span>Go-live checklist</h2>
+  <p class="lead">Do these in order. Steps 1–3 make editing work; step 4 makes winvakiw.org show the new site.</p>
+  <h3>1. Reconnect GitHub to Cloudflare (re-enables automatic publishing)</h3>
+  <ol class="steps">
+    <li>Signed in to GitHub as an owner of <b>Winchester-Kiwanis</b>, open <b>github.com/apps/cloudflare-workers-and-pages</b> → <b>Configure</b>.</li>
+    <li>Choose the <b>Winchester-Kiwanis</b> organization and give it access to <b>kiwanis-winchester</b> (or all repositories), then save.</li>
+    <li>In Cloudflare: <b>kiwanis-winchester</b> → <b>Settings</b> → <b>Build</b> → <b>Git repository</b>. Confirm it shows Winchester-Kiwanis/kiwanis-winchester. If it still shows the old owner, use <b>Manage</b> to reconnect it.</li>
+    <li>In <b>Variables and Secrets</b>, set <code>GITHUB_OWNER</code> to <code>Winchester-Kiwanis</code>.</li>
+    <li>Test: make any small change in a portal (or GitHub) and confirm a new entry appears under <b>Deployments</b> within a minute.</li>
+  </ol>
+  <h3>2. Turn on login emails (Resend)</h3>
+  <ol class="steps">
+    <li>Create a free account at <b>resend.com</b> with a club email address.</li>
+    <li>Add the domain <b>winvakiw.org</b>. Resend shows a few DNS records; add them where the domain's DNS is managed, then click Verify.</li>
+    <li>Create an API key. In Cloudflare <b>Variables and Secrets</b>, add <code>RESEND_API_KEY</code> (type: Secret) with that key, and <code>EDITOR_EMAIL_FROM</code> = <code>Kiwanis Website &lt;website@winvakiw.org&gt;</code>.</li>
+    <li>Retry the latest deployment, then log in to <code>/editor/</code> with an approved email to confirm the code arrives.</li>
+  </ol>
+  <h3>3. Enter the real approved emails</h3>
+  <p>Fill in <code>EDITOR_ALLOWED_EMAILS</code> and <code>ADMIN_ALLOWED_EMAILS</code> as described in <a href="#access">Managing who can edit</a>.</p>
+  <h3>4. Point winvakiw.org at the new site</h3>
+  <ol class="steps">
+    <li>In Cloudflare: <b>kiwanis-winchester</b> → <b>Custom domains</b> → <b>Set up a custom domain</b> → enter <code>winvakiw.org</code>, then repeat for <code>www.winvakiw.org</code>.</li>
+    <li>Cloudflare shows the DNS record to create. Add it at the registrar where winvakiw.org is managed (today it points to the old WordPress host). If the domain's email runs through the same provider, change only the website records. Don't touch MX (email) records.</li>
+    <li>Wait for Cloudflare to show the domain as <b>Active</b> (usually minutes, at most a day). Check winvakiw.org in a private browser window.</li>
+    <li>Keep the old WordPress hosting for about a month as a safety net, then cancel it.</li>
+  </ol>
+</section>
+
+<!-- 9 -->
+<section id="accounts">
+  <h2><span class="n">9</span>Accounts &amp; ownership</h2>
+  <p class="lead">The club should always be able to reach every account below without depending on one person. Passwords and keys are intentionally <b>not</b> written in this document; keep them in the club's password manager.</p>
+  <table>
+    <tr><th>Account</th><th>What it does</th><th>Current owner</th><th>Recommended</th></tr>
+    <tr><td>GitHub organization <b>Winchester-Kiwanis</b></td><td>Stores every version of the site's files</td><td>Cameron (only member). Billing email winchesterkiwanis@outlook.com</td><td>Invite 2 officers as <b>Owners</b>: Settings → People → Invite member</td></tr>
+    <tr><td>Cloudflare project <b>kiwanis-winchester</b></td><td>Hosts and builds the website, stores the settings above</td><td>Cameron's Cloudflare account</td><td>Create a club Cloudflare account and move the project into it (a web volunteer recreates it from the GitHub repo and copies the settings), or add officers as members</td></tr>
+    <tr><td>GitHub publishing key (<code>GITHUB_TOKEN</code>)</td><td>Lets the portals save versions to GitHub</td><td>Created under Cameron's GitHub</td><td>Replace with a fine-grained key from a club-owned GitHub account, limited to this one repository (Contents: read &amp; write)</td></tr>
+    <tr><td>Domain <b>winvakiw.org</b></td><td>The website address and club email</td><td>Club's existing registrar</td><td>Confirm which officer holds the registrar login</td></tr>
+    <tr><td>Resend (to set up)</td><td>Sends login codes</td><td>—</td><td>Create with a club email address</td></tr>
+  </table>
+  <div class="box warn"><b>Never paste a key into an email, chat or this document</b>Keys go only into Cloudflare's Variables and Secrets screen. If a key is ever exposed, delete it at the service that issued it and create a new one.</div>
+</section>
+
+<!-- 10 -->
+<section id="tech">
+  <h2><span class="n">10</span>Technical reference</h2>
+  <p class="lead">For a future web volunteer or developer.</p>
+  <table>
+    <tr><th>Layer</th><th>Tool</th></tr>
+    <tr><td>Site generator</td><td>Eleventy (11ty) 3 — templates in <code>src/*.njk</code>, content in <code>src/_data/</code></td></tr>
+    <tr><td>Hosting</td><td>Cloudflare Pages, project <code>kiwanis-winchester</code>; build <code>npx @11ty/eleventy</code> → output <code>_site</code></td></tr>
+    <tr><td>Server code</td><td>Cloudflare Pages Functions in <code>src/functions/</code> (the root <code>functions/</code> files just forward to them)</td></tr>
+    <tr><td>Content</td><td><code>src/_data/editorContent.json</code> (Editor Portal), <code>src/_data/site.json</code> and <code>src/_data/cms/*.json</code> (Admin Portal), <code>src/_data/siteEdits.json</code> (visual edits). Uploads go to <code>src/assets/uploads/editor/</code></td></tr>
+    <tr><td>Login</td><td>Email one-time code (Resend) → signed session token (<code>EDITOR_AUTH_SECRET</code>)</td></tr>
+    <tr><td>AI assistant</td><td><code>src/functions/api/kiwanis-assistant.js</code> (Cloudflare Workers AI). Its facts are written in that file</td></tr>
+  </table>
+  <h3>Cloudflare settings (Variables and Secrets)</h3>
+  <table>
+    <tr><th>Name</th><th>Purpose</th></tr>
+    <tr><td><code>EDITOR_AUTH_SECRET</code></td><td>Long random value that signs login sessions</td></tr>
+    <tr><td><code>EDITOR_ALLOWED_EMAILS</code> / <code>ADMIN_ALLOWED_EMAILS</code></td><td>Who can log in (comma-separated)</td></tr>
+    <tr><td><code>GITHUB_TOKEN</code>, <code>GITHUB_OWNER</code>, <code>GITHUB_REPO</code>, <code>GITHUB_BRANCH</code></td><td>Where the portals save (<code>Winchester-Kiwanis</code> / <code>kiwanis-winchester</code> / <code>main</code>)</td></tr>
+    <tr><td><code>RESEND_API_KEY</code>, <code>EDITOR_EMAIL_FROM</code></td><td>Login-code emails</td></tr>
+    <tr><td><code>EDITOR_COMMITTER_NAME</code>, <code>EDITOR_COMMITTER_EMAIL</code></td><td>Name shown on portal saves in GitHub</td></tr>
+    <tr><td><code>KIWANIS_ASSISTANT_MODEL…</code></td><td>Which AI model the assistant uses</td></tr>
+    <tr><td><code>EDITOR_DEV_MODE</code></td><td><b>Must stay off on the live site.</b> When <code>true</code>, login codes are shown on screen. Removed Oct 13, 2026</td></tr>
+  </table>
+  <h3>Run the site on your own computer</h3>
+  <ol class="steps">
+    <li>Install <b>Node.js</b> (LTS) and <b>Git</b>. Then: <code>git clone https://github.com/Winchester-Kiwanis/kiwanis-winchester.git</code></li>
+    <li>In that folder: <code>npm install</code>, then <code>npm run dev</code>, and open <code>http://localhost:8080</code>.</li>
+  </ol>
+  <h3 id="rehearsal">Rehearsal mode (safe demo)</h3>
+  <p>With the site running on your computer, open <code>http://localhost:8080/admin/?demo=1</code> or <code>/editor/?demo=1</code>. Enter any email and any 6-digit code. You get the full portal with sample data, and nothing is saved or published. This only works on <code>localhost</code>, never on the live site.</p>
+  <h3>Change history</h3>
+  <p>The full history of every change is in GitHub under <b>Commits</b>, and a full offline copy (with history) is included in this handover folder as <code>Website-Source/kiwanis-winchester.bundle</code>. Restore it with <code>git clone kiwanis-winchester.bundle kiwanis-winchester</code>.</p>
+</section>
+
+<!-- 11 -->
+<section id="faq">
+  <h2><span class="n">11</span>FAQ &amp; glossary</h2>
+  <h3>I published and the site didn't change.</h3>
+  <p>Wait 2 minutes and refresh (Ctrl+F5). If it still hasn't changed, check Cloudflare → Deployments. If there's no new entry, the GitHub connection needs attention (<a href="#golive">Go-live step 1</a>).</p>
+  <h3>I didn't get a login code.</h3>
+  <p>Check spam. Make sure the email is on an approved list. Codes expire after 10 minutes. If nobody receives codes, Resend needs attention (<a href="#golive">Go-live step 2</a>).</p>
+  <h3>Can two people edit at once?</h3>
+  <p>Yes, but they should edit different things. If two people change the same section, the later publish wins, and the earlier one is still in the history and can be restored.</p>
+  <h3>What file types can I upload?</h3>
+  <p>Event photos: JPG, PNG, WEBP or GIF. Newsletters: PDF only. Keep photos under about 2 MB; phone photos can be resized first.</p>
+  <h3>Glossary</h3>
+  <table>
+    <tr><td><b>Portal</b></td><td>The private editing page (/editor/ or /admin/)</td></tr>
+    <tr><td><b>GitHub</b></td><td>The "filing cabinet" that keeps every version of the site's files</td></tr>
+    <tr><td><b>Commit</b></td><td>One saved version in GitHub; every portal publish creates one</td></tr>
+    <tr><td><b>Cloudflare</b></td><td>The "web host" that builds and serves the site</td></tr>
+    <tr><td><b>Deployment</b></td><td>One build of the site that Cloudflare put online</td></tr>
+    <tr><td><b>Draft / Stage</b></td><td>Admin Portal edits collected before publishing them together</td></tr>
+    <tr><td><b>DNS</b></td><td>The domain settings that decide which server winvakiw.org points to</td></tr>
+  </table>
+</section>
+<footer>Kiwanis Club of Winchester · Website Guide · prepared October 13, 2026 by Cameron Anderson. A copy is also kept in the website's GitHub repository under <code>docs/handover/</code>.</footer>
+</main>
+</body>
+</html>

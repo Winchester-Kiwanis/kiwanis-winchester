@@ -1,3 +1,5 @@
+> **Handover guide:** see `docs/handover/Kiwanis Website Guide.pdf` for the complete, up-to-date manual.
+
 # Kiwanis Website Editing Setup
 
 This site now uses native editing portals backed by GitHub and Cloudflare.
@@ -32,7 +34,7 @@ EDITOR_AUTH_SECRET=<long random secret>
 EDITOR_ALLOWED_EMAILS=editor1@example.com,editor2@example.com
 ADMIN_ALLOWED_EMAILS=admin1@example.com,admin2@example.com
 GITHUB_TOKEN=<fine-grained GitHub token with contents read/write for this repo>
-GITHUB_OWNER=darkdefined-spec
+GITHUB_OWNER=Winchester-Kiwanis
 GITHUB_REPO=kiwanis-winchester
 GITHUB_BRANCH=main
 RESEND_API_KEY=<email sending API key>
@@ -49,16 +51,8 @@ EDITOR_DEV_MODE=true
 
 Do not leave `EDITOR_DEV_MODE` enabled on the live site long term. In dev mode, the OTP route can return a visible code for testing.
 
-Temporary live-publish demo credential:
 
-```text
-Email: demo@winvakiw.org
-OTP: 123456
-```
-
-This demo credential has admin role behavior so it can open both `/admin/` and `/editor/` and publish real GitHub-backed changes during a board presentation. Remove or disable it after the demo window.
-
-For a no-risk Admin Portal rehearsal, open `/admin/?demo=1` or `/admin/?adminTest=1`. Demo mode accepts any email address, asks for a fake numeric OTP such as `123456`, loads the full admin interface with sample content, and never calls the live save API or creates GitHub commits.
+For a no-risk Admin Portal rehearsal, run the site locally (`npm run dev`) and open `http://localhost:8080/admin/?demo=1`. Rehearsal mode only works on localhost. Demo mode accepts any email address, asks for a fake numeric OTP such as `123456`, loads the full admin interface with sample content, and never calls the live save API or creates GitHub commits.
 
 ## Role Behavior
 
@@ -125,7 +119,7 @@ The structured field editor remains below the preview for fields that are not ea
 
 Important: the visual editor publishes JSON-backed changes. Page-specific content JSON handles structured sections, while `src/_data/siteEdits.json` covers the currently rendered hardcoded text/images. Longer term, high-value repeated sections can still be promoted into page-specific content JSON for cleaner structured editing.
 
-For board demos, use `/admin/?demo=1` unless you intentionally want a real publish. The test route is designed to show the login, preview, staging, and publish flow without touching the live repository.
+For board demos, run the site locally and use `/admin/?demo=1` (localhost only). The test route is designed to show the login, preview, staging, and publish flow without touching the live repository.
 
 ## Mistake Recovery
 
@@ -134,7 +128,7 @@ Every save creates a GitHub commit. If someone makes a bad edit, the Admin Porta
 ## Local Development
 
 ```bash
-cd /Users/cameronanderson/Desktop/Kiwanis/website
+cd kiwanis-winchester
 npm run dev
 ```
 
