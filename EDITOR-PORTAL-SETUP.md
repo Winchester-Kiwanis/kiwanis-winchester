@@ -112,4 +112,4 @@ The Admin Portal also uses `src/_data/siteEdits.json` to cover currently rendere
 
 Both portals use the same OTP login system and GitHub commit workflow. Set `ADMIN_ALLOWED_EMAILS` for full-site administrators and `EDITOR_ALLOWED_EMAILS` for limited editors.
 
-For a no-risk board rehearsal, use `/admin/?demo=1` for the full Admin Portal and `/editor/?demo=1` for the limited Editor Portal. Those routes accept any email, ask for a fake numeric OTP such as `123456`, and keep every change UI-only.
+For a no-risk board rehearsal, run the site locally and use `/admin/?demo=1` for the full Admin Portal and `/editor/?demo=1` for the limited Editor Portal (localhost only). Those routes accept any email, ask for a fake numeric OTP such as `123456`, and keep every change UI-only.
