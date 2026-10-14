@@ -891,7 +891,7 @@
           body: JSON.stringify({
             email: state.email,
             code: $('#admin-code').value.trim(),
-            challenge: state.challenge || (state.email === 'demo@winvakiw.org' ? 'kiwanis-live-demo-challenge' : ''),
+            challenge: state.challenge || '',
           }),
         });
         if (payload.role !== 'admin') throw new Error('This login is approved for the limited editor, not the full admin portal.');

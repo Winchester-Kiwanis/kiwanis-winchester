@@ -471,7 +471,7 @@
           body: JSON.stringify({
             email: state.email,
             code: $('#editor-code').value.trim(),
-            challenge: state.challenge || (state.email === 'demo@winvakiw.org' ? 'kiwanis-live-demo-challenge' : ''),
+            challenge: state.challenge || '',
           }),
         });
         state.token = payload.token;
