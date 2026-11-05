@@ -1,6 +1,121 @@
 {
   "events": [
     {
+      "id": "october-28-meeting-2026",
+      "title": "Access Independence at the Lunch Meeting",
+      "date": "2026-10-28",
+      "category": "Weekly Program",
+      "eventMeta": "October 28, 2026 - Winchester Moose Club - Winchester, VA",
+      "headerColor": "blue",
+      "facebookUrl": "https://www.facebook.com/winkiwanis",
+      "photos": [
+        {
+          "src": "/assets/uploads/2026/10/harbaugh-2026-podium.jpg",
+          "alt": "Charles Harbaugh IV, Mayor of Middletown and Director of Access Independence, speaking at the podium",
+          "objectPosition": "center top"
+        },
+        {
+          "src": "/assets/uploads/2026/10/doug-green-2026-challah.jpg",
+          "alt": "Doug Green sharing challah bread with members after the invocation",
+          "objectPosition": "center center"
+        }
+      ]
+    },
+    {
+      "id": "fall-pancake-day-2026",
+      "title": "Fall Pancake Day 2026",
+      "date": "2026-10-24",
+      "category": "Fundraiser",
+      "eventMeta": "October 24, 2026 - Benefiting Concern Hotline - Winchester, VA",
+      "headerColor": "gold",
+      "facebookUrl": "https://www.facebook.com/winkiwanis",
+      "photos": [
+        {
+          "src": "/assets/uploads/2026/10/pancake-2026-griddle.jpg",
+          "alt": "Kiwanis volunteers cooking pancakes on the griddle at Fall Pancake Day 2026",
+          "objectPosition": "center center"
+        },
+        {
+          "src": "/assets/uploads/2026/10/pancake-2026-guests.jpg",
+          "alt": "Guests enjoying pancakes at Fall Pancake Day 2026",
+          "objectPosition": "center center"
+        },
+        {
+          "src": "/assets/uploads/2026/10/pancake-2026-volunteers.jpg",
+          "alt": "Club volunteers in Kiwanis aprons at Fall Pancake Day 2026",
+          "objectPosition": "center top"
+        },
+        {
+          "src": "/assets/uploads/2026/10/pancake-2026-serving.jpg",
+          "alt": "A volunteer serving sausage at Fall Pancake Day 2026",
+          "objectPosition": "center center"
+        },
+        {
+          "src": "/assets/uploads/2026/10/pancake-2026-kitchen-crew.jpg",
+          "alt": "The kitchen crew at work during Fall Pancake Day 2026",
+          "objectPosition": "center center"
+        },
+        {
+          "src": "/assets/uploads/2026/10/pancake-2026-serving-line.jpg",
+          "alt": "The serving line at Fall Pancake Day 2026",
+          "objectPosition": "center center"
+        }
+      ]
+    },
+    {
+      "id": "shenandoah-hornets-2026",
+      "title": "Thank You, Shenandoah Hornets",
+      "date": "2026-10-24",
+      "category": "Community Partnership",
+      "eventMeta": "October 2026 - Shenandoah Hornets baseball team - Winchester, VA",
+      "headerColor": "blue",
+      "facebookUrl": "https://www.facebook.com/winkiwanis",
+      "photos": [
+        {
+          "src": "/assets/uploads/2026/10/hornets-2026-team.jpg",
+          "alt": "The Shenandoah Hornets baseball team with the Kiwanis Club of Winchester banner",
+          "objectPosition": "center center"
+        },
+        {
+          "src": "/assets/uploads/2026/10/hornets-2026-letter.jpg",
+          "alt": "The Letter of Appreciation presented to the Shenandoah Hornets",
+          "objectPosition": "center center"
+        }
+      ]
+    },
+    {
+      "id": "rescue-mission-2026",
+      "title": "Conversations on a Bench",
+      "date": "2026-10-09",
+      "category": "Service",
+      "eventMeta": "October 2026 - Winchester Rescue Mission - Winchester, VA",
+      "headerColor": "blue",
+      "facebookUrl": "https://www.facebook.com/winkiwanis",
+      "photos": [
+        {
+          "src": "/assets/uploads/2026/10/rescue-mission-2026-bench.jpg",
+          "alt": "Ginny Grant, Susan Corrigan and Jim Coots with Lauren Clouse, CEO of the Winchester Rescue Mission",
+          "objectPosition": "center center"
+        }
+      ]
+    },
+    {
+      "id": "highway-cleanup-2026",
+      "title": "Highway Clean-Up",
+      "date": "2026-10-01",
+      "category": "Service",
+      "eventMeta": "October 2026 - Airport Road & Crossover Blvd - Winchester, VA",
+      "headerColor": "gold",
+      "facebookUrl": "https://www.facebook.com/winkiwanis",
+      "photos": [
+        {
+          "src": "/assets/uploads/2026/10/road-cleanup-2026.jpg",
+          "alt": "Kiwanis members in safety vests after the highway clean-up on Airport Road and Crossover Boulevard",
+          "objectPosition": "center center"
+        }
+      ]
+    },
+    {
       "id": "annual-picnic-2024",
       "title": "Annual Picnic 2024",
       "date": "2024-08-14",
@@ -54,6 +169,13 @@
     }
   ],
   "newsletters": [
+    {
+      "id": "2026-10",
+      "title": "October 2026",
+      "date": "2026-10-01",
+      "year": "2026",
+      "pdfUrl": "/assets/uploads/2026/10/2026-10-October-Kourier.pdf"
+    },
     {
       "id": "2026-01",
       "title": "January 2026",
@@ -142,6 +264,25 @@
   "speakers": {
     "intro": "Each week at our Wednesday noon meeting, we hear from community leaders, local organizations, and subject-matter experts on topics ranging from local government to health, business, and service opportunities.",
     "upcoming": [],
-    "recent": []
+    "recent": [
+      {
+        "date": "October 28, 2026",
+        "meta": "",
+        "name": "Charles Harbaugh IV",
+        "title": "Mayor of Middletown and Director",
+        "organization": "Access Independence",
+        "topic": "Ramping Up Access in Middletown",
+        "description": "Access Independence provides free medical equipment and builds home ramps so neighbours can live safely and independently. One hundred per cent of donations go to the mission — a separate grant covers salaries and utilities. The organisation has the materials but is limited to three or four ramps a month for want of volunteer carpenters."
+      },
+      {
+        "date": "October 2026",
+        "meta": "",
+        "name": "Richard Kozlow",
+        "title": "",
+        "organization": "French & Indian War Foundation",
+        "topic": "Local History",
+        "description": "A look at the Winchester area's role in the French and Indian War."
+      }
+    ]
   }
 }
