@@ -42,7 +42,7 @@ export async function onRequestPost({ request, env }) {
     const email = normalizeEmail(body.email);
     if (!email) return json({ error: 'Email is required.' }, 400);
 
-    if (!isAllowedEmail(email, env)) {
+    if (!(await isAllowedEmail(email, env))) {
       return json({ ok: true, message: 'If that email is approved, a code has been sent.' });
     }
 

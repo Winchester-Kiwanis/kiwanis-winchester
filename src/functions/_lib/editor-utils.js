@@ -37,28 +37,109 @@ function getAllowedEmailsForEnvValue(value) {
     .filter(Boolean);
 }
 
-function getAllowedEmails(env) {
-  return [
-    ...getAllowedEmailsForEnvValue(env.EDITOR_ALLOWED_EMAILS),
-    ...getAllowedEmailsForEnvValue(env.ADMIN_ALLOWED_EMAILS || env.EDITOR_ADMIN_EMAILS),
-  ].filter((email, index, list) => list.indexOf(email) === index);
+/* ---------- Access: who may log in ----------
+   Two sources, merged:
+   1. Cloudflare settings (ADMIN_ALLOWED_EMAILS / EDITOR_ALLOWED_EMAILS). Admins listed here are
+      "owners": they can never be removed from the portal, so the club can't lock itself out.
+   2. The People list, edited by admins at /admin/people/ and stored privately in Cloudflare KV
+      (binding ACCESS). Kept out of GitHub because the repository is public. */
+const ACCESS_KEY = 'access-list';
+const ACCESS_LOG_KEY = 'access-log';
+const ACCESS_LIMIT = 50;
+const EMAIL_PATTERN = /^[^\s@,]+@[^\s@,]+\.[^\s@,]+$/;
+
+function uniqueEmails(list) {
+  return (Array.isArray(list) ? list : [])
+    .map(normalizeEmail)
+    .filter((email) => EMAIL_PATTERN.test(email))
+    .filter((email, index, all) => all.indexOf(email) === index);
 }
 
-function getAdminEmails(env) {
+function getOwnerEmails(env) {
   return getAllowedEmailsForEnvValue(env.ADMIN_ALLOWED_EMAILS || env.EDITOR_ADMIN_EMAILS);
 }
 
-function isAllowedEmail(email, env) {
-  const allowed = getAllowedEmails(env);
-  if (!allowed.length) return false;
-  return allowed.includes(normalizeEmail(email));
+function getSettingsEditorEmails(env) {
+  return getAllowedEmailsForEnvValue(env.EDITOR_ALLOWED_EMAILS);
 }
 
-function getRoleForEmail(email, env) {
+async function readAccessStore(env) {
+  if (!env.ACCESS) return { configured: false, admins: [], editors: [], updatedAt: '', updatedBy: '' };
+  const raw = await env.ACCESS.get(ACCESS_KEY, 'json').catch(() => null);
+  return {
+    configured: true,
+    admins: uniqueEmails(raw?.admins),
+    editors: uniqueEmails(raw?.editors),
+    updatedAt: String(raw?.updatedAt || ''),
+    updatedBy: String(raw?.updatedBy || ''),
+  };
+}
+
+async function getAccess(env) {
+  const store = await readAccessStore(env);
+  const owners = getOwnerEmails(env);
+  const admins = uniqueEmails([...owners, ...store.admins]);
+  const editors = uniqueEmails([...getSettingsEditorEmails(env), ...store.editors]).filter((email) => !admins.includes(email));
+  return { store, owners, admins, editors };
+}
+
+async function isAllowedEmail(email, env) {
   const normalized = normalizeEmail(email);
-  if (getAdminEmails(env).includes(normalized)) return 'admin';
-  if (getAllowedEmailsForEnvValue(env.EDITOR_ALLOWED_EMAILS).includes(normalized)) return 'editor';
+  if (!normalized) return false;
+  const { admins, editors } = await getAccess(env);
+  return admins.includes(normalized) || editors.includes(normalized);
+}
+
+async function getRoleForEmail(email, env) {
+  const normalized = normalizeEmail(email);
+  const { admins, editors } = await getAccess(env);
+  if (admins.includes(normalized)) return 'admin';
+  if (editors.includes(normalized)) return 'editor';
   return '';
+}
+
+function validatePeopleList(list, label) {
+  if (!Array.isArray(list)) throw new Error(`${label} must be a list of email addresses.`);
+  const bad = list.map((value) => String(value || '').trim()).filter((value) => value && !EMAIL_PATTERN.test(normalizeEmail(value)));
+  if (bad.length) throw new Error(`Not a valid email address: ${bad[0]}`);
+  const clean = uniqueEmails(list);
+  if (clean.length > ACCESS_LIMIT) throw new Error(`${label} can have at most ${ACCESS_LIMIT} people.`);
+  return clean;
+}
+
+async function writeAccessStore(env, { admins, editors }, byEmail) {
+  if (!env.ACCESS) throw new Error('People storage is not set up yet (missing ACCESS storage binding).');
+  const owners = getOwnerEmails(env);
+  const before = await readAccessStore(env);
+  const nextAdmins = validatePeopleList(admins, 'Admins').filter((email) => !owners.includes(email));
+  const nextEditors = validatePeopleList(editors, 'Editors').filter((email) => !owners.includes(email) && !nextAdmins.includes(email));
+  const record = {
+    admins: nextAdmins,
+    editors: nextEditors,
+    updatedAt: new Date().toISOString(),
+    updatedBy: normalizeEmail(byEmail),
+  };
+  await env.ACCESS.put(ACCESS_KEY, JSON.stringify(record));
+
+  const diff = (a, b) => a.filter((email) => !b.includes(email));
+  const entry = {
+    at: record.updatedAt,
+    by: record.updatedBy,
+    addedAdmins: diff(nextAdmins, before.admins),
+    removedAdmins: diff(before.admins, nextAdmins),
+    addedEditors: diff(nextEditors, before.editors),
+    removedEditors: diff(before.editors, nextEditors),
+  };
+  const log = await env.ACCESS.get(ACCESS_LOG_KEY, 'json').catch(() => null);
+  const nextLog = [entry, ...(Array.isArray(log) ? log : [])].slice(0, 30);
+  await env.ACCESS.put(ACCESS_LOG_KEY, JSON.stringify(nextLog));
+  return { record, entry };
+}
+
+async function readAccessLog(env) {
+  if (!env.ACCESS) return [];
+  const log = await env.ACCESS.get(ACCESS_LOG_KEY, 'json').catch(() => null);
+  return Array.isArray(log) ? log : [];
 }
 
 function getSecret(env) {
@@ -332,8 +413,9 @@ async function requireEditor(request, env) {
   const token = header.slice('Bearer '.length);
   const payload = await verifySignedPayload(token, env);
   const email = normalizeEmail(payload.email);
-  if (!email || !isAllowedEmail(email, env)) throw new Error('Editor is not authorized.');
-  return { email, role: getRoleForEmail(email, env) || payload.role || 'editor' };
+  if (!email || !(await isAllowedEmail(email, env))) throw new Error('Editor is not authorized.');
+  // Role comes from the current access lists, so removing someone takes effect on their next request.
+  return { email, role: (await getRoleForEmail(email, env)) || 'editor' };
 }
 
 async function requireAdmin(request, env) {
@@ -349,6 +431,9 @@ export {
   normalizeEmail,
   isAllowedEmail,
   getRoleForEmail,
+  getAccess,
+  writeAccessStore,
+  readAccessLog,
   codeHash,
   signPayload,
   verifySignedPayload,

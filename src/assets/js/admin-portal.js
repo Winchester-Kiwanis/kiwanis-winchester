@@ -984,6 +984,7 @@
   }
 
   setDemoLoginCopy();
+  if (IS_TEST_LOGIN && $('#people-link')) $('#people-link').href = '/admin/people/?demo=1';
   bindEvents();
   $('#publish-all-btn').disabled = true;
 

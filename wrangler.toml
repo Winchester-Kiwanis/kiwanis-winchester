@@ -1,11 +1,16 @@
 "$schema" = "./node_modules/wrangler/config-schema.json"
 
-name = "kiwanis-winchester"
+name = "winchester-kiwanis"
 compatibility_date = "2026-04-16"
 pages_build_output_dir = "_site"
 
 [ai]
 binding = "AI"
+
+# Private storage for the admin "Manage People" list (club Cloudflare account, namespace "kiwanis-website-people").
+[[kv_namespaces]]
+binding = "ACCESS"
+id = "2e6f9ac2bac9421eae2ffb1271646b71"
 
 [vars]
 KIWANIS_ASSISTANT_MODEL = "@cf/qwen/qwen3-30b-a3b-fp8"

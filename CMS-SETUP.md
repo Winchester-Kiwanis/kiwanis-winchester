@@ -54,6 +54,15 @@ Do not leave `EDITOR_DEV_MODE` enabled on the live site long term. In dev mode, 
 
 For a no-risk Admin Portal rehearsal, run the site locally (`npm run dev`) and open `http://localhost:8080/admin/?demo=1`. Rehearsal mode only works on localhost. Demo mode accepts any email address, asks for a fake numeric OTP such as `123456`, loads the full admin interface with sample content, and never calls the live save API or creates GitHub commits.
 
+## Managing People (who can log in)
+
+Admins add and remove people themselves at `/admin/people/` (the **Manage People** link in the Admin Portal header):
+
+- Type an email, choose **Admin** or **Editor**, click **Add Person**, then **Save Changes**. It takes effect immediately; no rebuild.
+- **Make Admin / Make Editor** switches a role. **Remove** takes away access on that person's next action.
+- **Owners** are the emails in the Cloudflare `ADMIN_ALLOWED_EMAILS` setting. They always have admin access and can't be removed from this page, so the club can't lock itself out. Change owners only in Cloudflare.
+- The list is stored privately in Cloudflare KV (binding `ACCESS`, namespace `kiwanis-website-people`), not in GitHub, because the repository is public. The last 30 changes (who, when, what) are kept and shown on the page.
+
 ## Role Behavior
 
 Admins listed in `ADMIN_ALLOWED_EMAILS` can log into `/admin/` and `/editor/`.

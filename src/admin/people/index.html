@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex,nofollow">
+  <title>Manage People · Kiwanis Admin Portal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/editor.css">
+  <style>
+    .people-wrap { width: min(860px, calc(100vw - 32px)); margin: 0 auto; padding: 40px 0 80px; }
+    .people-head { display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; margin-bottom: 22px; }
+    .people-card h2 { margin-bottom: 6px; }
+    .people-card > .hint { margin: 0 0 14px; }
+    .people-add { display: flex; gap: 10px; flex-wrap: wrap; margin: 4px 0 18px; }
+    .people-add input { flex: 1 1 260px; }
+    .people-add select { flex: 0 0 auto; width: auto; }
+    .people-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+    .people-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 10px 14px; border: 1px solid var(--kw-border); border-radius: 10px; background: #fff; }
+    .people-row .who { font-weight: 700; color: var(--kw-dark); overflow-wrap: anywhere; }
+    .people-row .tag { font-size: 0.72rem; font-weight: 800; text-transform: uppercase; letter-spacing: .08em; padding: 3px 8px; border-radius: 999px; background: var(--kw-blue-light); color: var(--kw-blue); white-space: nowrap; }
+    .people-row .tag.owner { background: #fff4bf; color: #6b5200; }
+    .people-row .row-actions { display: flex; gap: 8px; align-items: center; flex: none; }
+    .people-row button { padding: 7px 11px; font-size: .85rem; }
+    .people-empty { color: var(--kw-muted); font-style: italic; padding: 6px 2px; }
+    .people-section-title { margin: 18px 0 8px; font-size: .8rem; text-transform: uppercase; letter-spacing: .1em; color: var(--kw-muted); font-weight: 900; }
+    .people-save { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; margin-top: 22px; }
+    .people-log { margin-top: 26px; }
+    .people-log li { margin-bottom: 6px; color: var(--kw-body); font-size: .92rem; }
+    .people-warning { background: #fff4bf; border: 1px solid #e8cf63; border-radius: 12px; padding: 14px 16px; margin-bottom: 16px; color: #5c4600; font-weight: 600; }
+  </style>
+</head>
+<body>
+  <main class="people-wrap">
+    <div class="people-head">
+      <div class="brand-lockup compact">
+        <img src="/assets/uploads/2023/03/kiwanis-seal.png" alt="" aria-hidden="true">
+        <div>
+          <p class="eyebrow">Admin Portal</p>
+          <h1 style="font-size:2rem">Manage People</h1>
+        </div>
+      </div>
+      <div class="header-actions">
+        <a id="back-link" href="/admin/">← Back to Admin Portal</a>
+      </div>
+    </div>
+
+    <section id="signed-out" class="auth-card hidden">
+      <h2>Please log in first</h2>
+      <p class="hint">Log in to the Admin Portal, then come back to this page.</p>
+      <p><a id="login-link" href="/admin/">Go to the Admin Portal login</a></p>
+    </section>
+
+    <section id="people-app" class="auth-card people-card hidden">
+      <div id="setup-warning" class="people-warning hidden">
+        People storage isn't switched on yet, so changes can't be saved. The owners below can still log in.
+      </div>
+
+      <h2>Who can log in</h2>
+      <p class="hint"><strong>Admins</strong> can edit every page, manage people, and use the Editor Portal.
+        <strong>Editors</strong> can only update events, newsletters, and speakers.
+        People get in by typing their email at the login screen. A one-time code is emailed to them; there are no passwords.</p>
+
+      <form id="add-form" class="people-add">
+        <label class="sr-only" for="new-email" style="position:absolute;left:-9999px">Email address</label>
+        <input id="new-email" type="email" placeholder="name@example.com" autocomplete="off" required>
+        <select id="new-role" aria-label="Role">
+          <option value="editor">Editor</option>
+          <option value="admin">Admin</option>
+        </select>
+        <button type="submit">Add Person</button>
+      </form>
+
+      <p class="people-section-title">Owners (permanent)</p>
+      <ul id="owners-list" class="people-list"></ul>
+      <p class="hint" style="margin-top:8px">Owners are set in the club's Cloudflare account and can't be removed here, so the club can never lock itself out.</p>
+
+      <p class="people-section-title">Admins</p>
+      <ul id="admins-list" class="people-list"></ul>
+
+      <p class="people-section-title">Editors</p>
+      <ul id="editors-list" class="people-list"></ul>
+
+      <div class="people-save">
+        <button type="button" id="save-btn" disabled>Save Changes</button>
+        <button type="button" id="discard-btn" class="ghost" disabled>Discard</button>
+        <span id="status" class="status-note" role="status" aria-live="polite" style="margin:0"></span>
+      </div>
+
+      <div class="people-log">
+        <p class="people-section-title">Recent changes</p>
+        <ul id="log-list"></ul>
+      </div>
+    </section>
+  </main>
+  <script src="/assets/js/people-admin.js" defer></script>
+</body>
+</html>

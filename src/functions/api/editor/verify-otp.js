@@ -7,13 +7,13 @@ export async function onRequestPost({ request, env }) {
     const code = String(body.code || '').trim();
     const challenge = String(body.challenge || '').trim();
     if (!email || !code || !challenge) return json({ error: 'Email, code, and challenge are required.' }, 400);
-    if (!isAllowedEmail(email, env)) return json({ error: 'Editor is not authorized.' }, 403);
+    if (!(await isAllowedEmail(email, env))) return json({ error: 'Editor is not authorized.' }, 403);
 
     const payload = await verifySignedPayload(challenge, env);
     if (normalizeEmail(payload.email) !== email) return json({ error: 'Code does not match this email.' }, 400);
     if (payload.codeHash !== await codeHash(email, code, env)) return json({ error: 'Invalid code.' }, 401);
 
-    const role = getRoleForEmail(email, env) || 'editor';
+    const role = (await getRoleForEmail(email, env)) || 'editor';
     const hours = Math.max(1, Math.min(24, Number(env.EDITOR_SESSION_HOURS || 8)));
     const token = await signPayload({
       email,
